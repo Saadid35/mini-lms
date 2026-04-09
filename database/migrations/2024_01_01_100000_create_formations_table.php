@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('formations', function (Blueprint $table) {
+            $table->id();
+            $table->string('nom');
+            $table->text('description')->nullable();
+            $table->string('niveau')->default('débutant'); // débutant, intermédiaire, avancé
+            $table->integer('duree')->nullable()->comment('Durée en heures');
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('formations');
+    }
+};
